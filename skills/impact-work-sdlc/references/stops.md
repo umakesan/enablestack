@@ -16,7 +16,7 @@ Read before every stop.
 | S5 Comp pick | Comp-led UI work | Visual board, three comps | The UI section |
 | S6 Approach pick | Project | Board: options naming the BRs they serve | Design sections |
 | S7 Each design section | Project | Board card or chat | The next section |
-| S8 Merge | Every merge | Board: PR or branch, pre-check-in results on the merge result, warnings, suppressions, waivers, UAT summary | That one merge |
+| S8 Merge | Every merge | Board: PR or branch, pre-check-in results on the merge result, warnings, suppressions, waivers, AI security reviews, UAT summary. Approve S8 against the board file itself. | That one merge |
 | S9 Irreversible or outward action | Deploy, publish, force-push, deleting or migrating real data, messages to people, public posts, remotes, sharing a board | Chat, naming the exact action and target | That one action |
 | S10 Scope change | A finding or new fact would change the approved brief or design | Board: evidence, options, recommendation | Return to Gate 0 or phase 5 for the delta |
 | S11 Conflicting answers | Two owner answers contradict | Chat, both quoted | The resolution |

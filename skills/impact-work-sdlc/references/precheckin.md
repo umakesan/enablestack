@@ -8,7 +8,7 @@ Read at phase 7 (setup units) and at 8G.
 |---|---|---|
 | Every commit (under ~30 s) | Staged secrets, format, lint | `.git/hooks/pre-commit` -> `scripts/precheckin --fast` |
 | Before push and review, per unit | Every deterministic check on the whole change | `scripts/precheckin` (also the `pre-push` hook) |
-| Before merge | Full set on the merge result, plus AI security review and independent review | conductor; CI runs the same script when the project has CI |
+| Before merge | Full set on the merge result, plus AI security review and independent review | conductor: `git merge --no-ff --no-commit <branch>`, run `scripts/precheckin` on that staged result, then commit; CI runs the same script when the project has CI |
 
 Order: `Build -> tests -> pre-check-in gate -> review -> UAT -> S16 -> S8 merge`.
 
@@ -51,7 +51,7 @@ Deterministic tools decide pass or fail. AI reviews find what tools cannot; thei
 - Record in `precheckin.toml` `[[waivers]]` with `check`, `reason`, the owner's exact `words`, `by`, `expires`; plus `sdlc_state.py approve --gate S17:<check> --artifact precheckin.toml`; plus a decision log entry when the risk is a business call.
 - **Never** a silent pass, an agent self-waiver, or a waiver without expiry. The runner ignores waivers without words, owner, or a future expiry.
 
-Warnings never stop the run; they are listed in the merge ask and close audit.
+Warnings never stop the run; they are listed in the merge ask and close audit. The merge board also lists each AI security review that ran (unit, reviewer model, verdict) and any risky unit without one.
 
 ## Tiers
 

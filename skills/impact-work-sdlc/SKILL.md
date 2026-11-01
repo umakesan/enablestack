@@ -44,7 +44,7 @@ A conductor, not a methodology. It calls owner skills at the right moment, in th
 | 4A | Design Arena (only if entry criteria hold) | PStack arena | - | [arena.md](references/arena.md) |
 | 4 | Approaches / visual direction | brainstorming / impeccable | S6 / S4, S5 | [ui.md](references/ui.md) if UI |
 | 5 | Design sections, technical grill per section | brainstorming + grill-me | S7 | interaction.md |
-| 6 / 6A | Written design, builder check, optional Critique Arena | brainstorming, PStack | - | arena.md |
+| 6 / 6A | Written design (in the store `docs/`, not brainstorming's default spec path; C2), builder check, optional Critique Arena | brainstorming, PStack | - | arena.md, [handoffs.md](references/handoffs.md) |
 | GA | **Gate A: design checked against the brief** | conductor | **S1** | stops.md |
 | 7 | Plan: units, tiers, scenario coverage, pre-check-in setup, UAT automation units | PStack | - | routing.md, [precheckin.md](references/precheckin.md) |
 | GB | **Gate B: plan, cost, installs** (project only) | conductor | **S2** | stops.md |

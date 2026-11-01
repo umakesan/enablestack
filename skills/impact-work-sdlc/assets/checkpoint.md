@@ -25,7 +25,7 @@ Plan units:
 {{UNITS}}
 In flight:
 {{INFLIGHT}}
-Git: {{GIT}}
+Git (at last save): {{GIT}}
 
 ## Versions seen
 {{VERSIONS}}

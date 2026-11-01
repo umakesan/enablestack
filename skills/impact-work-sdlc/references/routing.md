@@ -52,6 +52,7 @@ Model names change; the mapping above is an example. Resolve from the live `Agen
 
 1. Same tier, nearest model in the same family. 2. Same tier, other family. 3. Up one tier.
 - **Never fall down a tier silently.** A forced downgrade is logged and gets a T3 reviewer.
+- **Owner model limits.** If the owner restricts models (for budget) so that the "different model, T2+" review or a unit's tier floor cannot be met in one family, say so at Gate B and recommend a cross-runtime reviewer (`codex exec` on another family) when reachable; if the owner keeps the limit, log each affected review as "same family" and list them at S8 and close.
 - A capacity or thread-limit error stops spawning; it is not a reason to try a cheaper model.
 - Arena: 3 seats default, 4 max, one re-frame. Escalation: 2 per unit. Spend over the Gate B cap: S12.
 - Arena seats and independent units launch in parallel; escalation retries are sequential per unit.

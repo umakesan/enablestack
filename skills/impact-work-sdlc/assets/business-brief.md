@@ -1,5 +1,6 @@
 # Business brief - <title>
-Approved: (pending Gate 0)
+
+<!-- No approval line here: Gate 0 approval lives in the decision log and the checkpoint (bound to this file's hash), so nobody has to edit the brief after it is approved. -->
 
 <!-- Business language only: no screens, endpoints, tables, frameworks or tools.
      Test: a business person could read every line and run every scenario by hand. -->

@@ -316,6 +316,15 @@ def cmd_route(a):
         f.write("\t".join(x.replace("\t", " ") for x in row) + "\n")
 
 
+def cmd_hash(a):
+    print(normalized_hash(resolve_artifact(a.project, a.artifact)))
+
+
+def pending_routes(store):
+    rows = (store / "routing.tsv").read_text().splitlines()[1:] if (store / "routing.tsv").exists() else []
+    return [r.split("\t")[2] for r in rows if len(r.split("\t")) > 11 and r.split("\t")[11] == "pending"]
+
+
 def cmd_check(a):
     project = Path(a.project).resolve()
     store, state = load(project)
@@ -343,6 +352,8 @@ def cmd_check(a):
         old = state.get("versions", {}).get(k)
         if old and old != v:
             print(f"Moved while parked: {k} {old} -> {v}")
+    for unit in pending_routes(store):
+        print(f"Routing row still pending: {unit} - close it (pass, gate-miss, dropout) before close")
     print(f"Open question: {state.get('open_question') or '(none)'}")
     print(f"Next: {state.get('next') or '(see phase map)'}")
     sys.exit(code)
@@ -405,6 +416,8 @@ def main():
     s.add_argument("--attempt", type=int, default=1)
     s.add_argument("--reviewer")
     s.add_argument("--escalated-from")
+    s = p("hash", cmd_hash)
+    s.add_argument("--artifact", required=True)
     p("check", cmd_check)
     a = ap.parse_args()
     a.fn(a)

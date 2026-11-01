@@ -34,6 +34,7 @@ Read at phase 0 and on every resume.
 | Prototype, video, share pack | store `prototype/`, `share/<date>/` | conductor |
 | UAT evidence (screenshots, traces, video, HTML report) | store `uat/<run-id>/` | Playwright run |
 | Arena runs | store `arena/<run-id>/` | conductor (frame, rubric, seats, synthesis); each seat its own folder |
+| Written design (sections) and plan | store `docs/` (a repo copy only if the owner opts in at Gate A; log the choice) | brainstorming / PStack |
 | Technical decision trail, PStack resume record | PStack store and `resume.mjs` | PStack |
 | PRODUCT.md, DESIGN.md, `.impeccable/` | project | Impeccable |
 
@@ -56,19 +57,21 @@ $S made --project . --label prototype --path ~/.claude/orchestrate/<slug>/protot
 $S route --project . --phase 8 --unit U3 --tier T1 --rule default --runtime claude --mechanism agent --model sonnet --effort medium --outcome pass --reviewer opus
 $S park --project . --by "owner" --reason "sharing the prototype" --next "collect feedback, re-ask Gate 0"
 $S resume --project .
+$S hash --project . --artifact docs/business/brief.md   # the normalized hash; quote this one in any record
 $S check --project .           # resume check: gates, in-flight, git, versions moved; exit 3 stale, 4 interrupted
 ```
 
 - `approve` refuses agent approvers and empty words. `--by` is who said it; in a test run with a stand-in, write `test owner (not the captain)`.
 - Gate ids: `S0`, `S1`, `S2`, `S3`, `S4`, `S5`, `S6`, `S7:<n>` per section, `S8`, `S16`, `S17:<check>`.
-- Hashes ignore line-ending and trailing-whitespace changes only; any other edit makes the gate stale.
+- Hashes ignore line-ending and trailing-whitespace changes only; any other edit makes the gate stale. Quote only the normalized hash (`hash`) in the decision log and boards; a raw `shasum` differs and reads as a false mismatch.
+- `check` also lists routing rows still `pending`; none may remain at close.
 
 ## Checkpoint cadence
 
 | When | Make durable |
 |---|---|
 | The owner answers anything | grill ledger row; for a business call, `decide` - before the next message |
-| Every phase boundary or stop answered | `phase` (refreshes checkpoint and `sdlc.md`), `approve` for gates, PStack `resume.mjs publish --project <dir>` when in git |
+| Every phase boundary or stop answered | `phase` (refreshes checkpoint and `sdlc.md`), `approve` for gates, PStack `resume.mjs publish --project <dir> --note docs/sdlc/checkpoint.md` when in git (it accepts only files inside the project, so point it at the checkpoint, never at store files) |
 | Before a long step (arena fan-out, plan unit, UAT run, prototype or video render) | `inflight begin` with step id, inputs, worker and model |
 | After each unit passes its checks | commit on the run branch, then `unit --status done --commit <sha>` |
 | After each UAT scenario | result row appended to the UAT report draft |
