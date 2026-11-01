@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{STOP}} {{TITLE}}</title>
+<!-- Review board template. Copy to <store>/boards/<stop>.html, replace every {{...}}, open with
+     `lavish-axi <file>` (loopback only), and save every annotation verbatim to boards/<stop>-feedback.md. -->
+<style>
+  :root { --bg:#fbfaf7; --ink:#1d1c1a; --muted:#5f5b53; --line:#e3ded3; --accent:#1f5f8b; --warn:#9a3b1b; --ok:#2d6a3e; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width:880px; margin:0 auto; padding:24px 16px 64px; }
+  header { border-bottom:2px solid var(--ink); padding-bottom:12px; margin-bottom:20px; }
+  .stop { font:600 13px/1 ui-monospace, Menlo, monospace; letter-spacing:.06em; color:var(--accent); text-transform:uppercase; }
+  h1 { margin:6px 0 8px; font-size:28px; line-height:1.2; }
+  .releases { background:#eef4f8; border-left:4px solid var(--accent); padding:10px 14px; margin:0; }
+  section { margin:28px 0; }
+  h2 { font-size:18px; border-bottom:1px solid var(--line); padding-bottom:6px; }
+  table { width:100%; border-collapse:collapse; font-size:14px; display:block; overflow-x:auto; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; min-width:0; overflow-wrap:anywhere; }
+  .first { border-left:4px solid var(--warn); padding-left:12px; }
+  .question { background:var(--ink); color:#fff; padding:18px; border-radius:6px; }
+  .question p { margin:0 0 8px; font-size:18px; }
+  .question small { color:#d7d2c8; }
+  .rec { color:var(--ok); font-weight:600; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="stop">{{STOP}} · {{PROJECT}} · {{DATE}}</div>
+    <h1>{{TITLE}}</h1>
+    <p class="releases"><strong>A yes starts:</strong> {{RELEASES}}. <strong>Still needs a separate go:</strong> {{NOT_RELEASED}}.</p>
+  </header>
+
+  <section class="first" aria-label="Needs attention first">
+    <h2>Needs your attention first</h2>
+    {{ATTENTION}}
+  </section>
+
+  <section aria-label="Evidence">
+    <h2>Evidence</h2>
+    {{BODY}}
+  </section>
+
+  <section class="question" aria-label="The question">
+    <p>{{QUESTION}}</p>
+    <div class="rec">Recommendation: {{RECOMMENDATION}}</div>
+    <small>Answer here or in chat. "Park" is always an answer. Approving binds to sha256 {{HASH}}; if the document changes, only the change is asked again.</small>
+  </section>
+</main>
+</body>
+</html>

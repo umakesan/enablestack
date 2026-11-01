@@ -1,0 +1,7 @@
+interface:
+  display_name: "Impact Work SDLC"
+  short_description: "Brief to accepted, merged work with gates and UAT"
+  default_prompt: "Use $impact-work-sdlc to run this project from a business brief to accepted, merged work."
+
+policy:
+  allow_implicit_invocation: true

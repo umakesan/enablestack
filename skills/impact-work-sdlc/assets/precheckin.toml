@@ -1,0 +1,23 @@
+# Pre-check-in gate configuration. Read by scripts/precheckin.
+# A command left empty is NOT RUN (blocking). "none: <reason>" marks it not applicable (listed at merge).
+
+[project]
+format = ""        # e.g. "npx prettier --check ."
+format_fix = ""    # e.g. "npx prettier --write ." (auto-fix before the format check)
+lint = ""          # e.g. "npx eslint ."
+typecheck = ""     # e.g. "npx tsc --noEmit", or "none: plain JavaScript"
+test = ""          # e.g. "npm test"
+build = ""         # e.g. "npm run build", or "none: no build step"
+ui_detect = ""     # UI work only, e.g. "npx impeccable detect --json public"
+
+[licenses]
+allow = ["MIT", "ISC", "BSD-2-Clause", "BSD-3-Clause", "Apache-2.0", "0BSD", "CC0-1.0", "BlueOak-1.0.0", "Unlicense", "Python-2.0", "CC-BY-4.0"]
+deny = ["AGPL-3.0", "AGPL-3.0-only", "AGPL-3.0-or-later", "GPL-3.0", "GPL-3.0-only", "GPL-3.0-or-later", "SSPL-1.0"]
+
+# Waivers: only the owner grants one (stop S17), always with an expiry. Agents never add entries.
+# [[waivers]]
+# check = "gitleaks"            # substring of the check name
+# reason = "tool not installed on this machine"
+# words = "<owner's exact words>"
+# by = "<owner>"
+# expires = "2026-12-01"
